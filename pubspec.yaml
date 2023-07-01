@@ -1,0 +1,33 @@
+name: book_times
+version: 1.0.0+1
+publish_to: none
+description: A new Flutter project.
+environment:
+  sdk: '>=3.0.3 <4.0.0'
+
+dependencies:
+  animated_bottom_navigation_bar: ^1.2.0
+  cloud_firestore: ^4.8.2
+  cupertino_icons: ^1.0.2
+  firebase_auth: ^4.6.3
+  firebase_core: ^2.14.0
+  firebase_ui_auth: ^1.5.0
+  floating_bottom_navigation_bar: ^1.5.2
+  flutter:
+    sdk: flutter
+  get: 4.6.5
+  http: ^1.1.0
+
+dev_dependencies:
+  flutter_lints: ^2.0.0
+  flutter_test:
+    sdk: flutter
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/icons/
+  fonts:
+    - family: chomsky
+      fonts:
+        - asset: assets/fonts/chomsky.ttf
