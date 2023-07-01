@@ -57,6 +57,8 @@ class HomeView extends GetView<HomeController> {
                                     imageDetail: data.bookImage,
                                     desc: data.description,
                                     title: data.title,
+                                    publisher: data.publisher,
+                                    rank: data.rank.toString(),
                                   )));
                     },
                     child: BookItem(data: data),
@@ -74,15 +76,15 @@ class HomeView extends GetView<HomeController> {
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.book),
-            label: 'Resep',
+            label: 'Notes',
           ),
         ],
         currentIndex: controller.selectedIndex,
         onTap: controller.onItemTapped,
         selectedItemColor:
-            Colors.blue, // Mengatur warna ikon dan teks terpilih (selected)
+            Colors.grey, // Mengatur warna ikon dan teks terpilih (selected)
         unselectedItemColor: Colors
-            .white, // Mengatur warna ikon dan teks tidak terpilih (unselected)
+            .black, // Mengatur warna ikon dan teks tidak terpilih (unselected)
       ),
     );
   }

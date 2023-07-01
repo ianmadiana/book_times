@@ -56,15 +56,15 @@ class NoteView extends GetView<NoteController> {
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.book),
-            label: 'Resep',
+            label: 'Notes',
           ),
         ],
         currentIndex: controller.selectedIndex,
         onTap: controller.onItemTapped,
         selectedItemColor:
-            Colors.blue, // Mengatur warna ikon dan teks terpilih (selected)
+            Colors.black, // Mengatur warna ikon dan teks terpilih (selected)
         unselectedItemColor: Colors
-            .white, // Mengatur warna ikon dan teks tidak terpilih (unselected)
+            .grey, // Mengatur warna ikon dan teks tidak terpilih (unselected)
       ),
     );
   }
