@@ -36,7 +36,7 @@ class NoteController extends GetxController {
       print(e);
       Get.defaultDialog(
         title: "Terjadi kesalahan",
-        middleText: "Tidak Berhasil Menambahkan produk",
+        middleText: "Tidak berhasil menambahkan catatan",
       );
     }
   }
@@ -57,10 +57,6 @@ class NoteController extends GetxController {
 
   int selectedIndex = 1;
 
-  // static List widgetOptions = [
-  //   Text('Home'),
-  //   Text('Note'),
-  // ];
 
   void onItemTapped(int index) {
     if (index == 0) {

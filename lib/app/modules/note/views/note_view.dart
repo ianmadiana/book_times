@@ -13,40 +13,7 @@ class NoteView extends GetView<NoteController> {
         title: const Text('Catatan'),
         centerTitle: true,
       ),
-      body: Center(
-          child: Padding(
-        padding: EdgeInsets.all(20.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text("Nama Buku"),
-            SizedBox(height: 10),
-            TextField(
-              controller: controller.bookC,
-              decoration: InputDecoration(
-                  labelText: 'Nama Buku',
-                  border: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.black))),
-            ),
-            SizedBox(height: 10),
-            Text("Halaman"),
-            SizedBox(height: 10),
-            TextField(
-              controller: controller.pageC,
-              decoration: InputDecoration(
-                  labelText: 'Halaman buku',
-                  border: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.black))),
-            ),
-            SizedBox(height: 10),
-            ElevatedButton(
-                onPressed: () => controller.addNotes(
-                    controller.bookC.text, controller.bookC.text),
-                child: Text("Save"))
-          ],
-        ),
-      )),
+      body: const Center(child: Text('data')),
       bottomNavigationBar: BottomNavigationBar(
         // backgroundColor: ListItemBackground.mainColor,
         items: const <BottomNavigationBarItem>[
@@ -66,6 +33,51 @@ class NoteView extends GetView<NoteController> {
         unselectedItemColor: Colors
             .grey, // Mengatur warna ikon dan teks tidak terpilih (unselected)
       ),
+      floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            Get.bottomSheet(BottomSheet(
+              onClosing: () {},
+              builder: (context) => ListView(
+                children: [
+                  Center(
+                      child: Padding(
+                    padding: const EdgeInsets.all(20.0),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const Text("Nama Buku"),
+                        const SizedBox(height: 10),
+                        TextField(
+                          controller: controller.bookC,
+                          decoration: const InputDecoration(
+                              labelText: 'Nama Buku',
+                              border: OutlineInputBorder(
+                                  borderSide: BorderSide(color: Colors.black))),
+                        ),
+                        const SizedBox(height: 10),
+                        const Text("Halaman"),
+                        const SizedBox(height: 10),
+                        TextField(
+                          controller: controller.pageC,
+                          decoration: const InputDecoration(
+                              labelText: 'Halaman buku',
+                              border: OutlineInputBorder(
+                                  borderSide: BorderSide(color: Colors.black))),
+                        ),
+                        const SizedBox(height: 10),
+                        ElevatedButton(
+                            onPressed: () => controller.addNotes(
+                                controller.bookC.text, controller.bookC.text),
+                            child: const Text("Save"))
+                      ],
+                    ),
+                  ))
+                ],
+              ),
+            ));
+          },
+          child: const Icon(Icons.add)),
     );
   }
 }
