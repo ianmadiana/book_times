@@ -68,4 +68,6 @@ class NoteController extends GetxController {
     selectedIndex = index;
     update();
   }
+
+
 }

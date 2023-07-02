@@ -19,10 +19,10 @@ class Detail extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(""),
+        title: const Text(""),
         actions: [
           IconButton(
-              onPressed: () {}, icon: Icon(Icons.favorite_border_rounded))
+              onPressed: () {}, icon: const Icon(Icons.favorite_border_rounded))
         ],
       ),
       body: Padding(
@@ -43,13 +43,13 @@ class Detail extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       ConstrainedBox(
-                        constraints: BoxConstraints(maxWidth: 200),
+                        constraints: const BoxConstraints(maxWidth: 200),
                         child: Text(
                           title,
                           // overflow: TextOverflow.ellipsis,
                           // maxLines: 2,
                           // softWrap: true,
-                          style: TextStyle(
+                          style: const TextStyle(
                               fontSize: 20, fontWeight: FontWeight.bold),
                         ),
                       ),
@@ -58,7 +58,7 @@ class Detail extends StatelessWidget {
                   ),
                 ],
               ),
-              SizedBox(height: 50),
+              const SizedBox(height: 50),
               IntrinsicHeight(
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -69,23 +69,23 @@ class Detail extends StatelessWidget {
                           children: [
                             Text(
                               rank,
-                              style: TextStyle(fontSize: 12),
+                              style: const TextStyle(fontSize: 12),
                             ),
-                            SizedBox(width: 5),
-                            Icon(
+                            const SizedBox(width: 5),
+                            const Icon(
                               Icons.star,
                               size: 18,
                             ),
                           ],
                         ),
-                        Text('Rank')
+                        const Text('Rank')
                       ],
                     ),
-                    VerticalDivider(
+                    const VerticalDivider(
                       thickness: 2,
                       color: Colors.grey,
                     ),
-                    Column(
+                    const Column(
                       children: [
                         Row(
                           children: [
@@ -99,11 +99,11 @@ class Detail extends StatelessWidget {
                         Text('Ebook'),
                       ],
                     ),
-                    VerticalDivider(
+                    const VerticalDivider(
                       thickness: 2,
                       color: Colors.grey,
                     ),
-                    Column(
+                    const Column(
                       children: [
                         Row(
                           children: [
@@ -120,18 +120,27 @@ class Detail extends StatelessWidget {
                   ],
                 ),
               ),
-              SizedBox(height: 20),
+              SizedBox(height: 50),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  ElevatedButton(onPressed: () {}, child: Text('Sample')),
+                  ElevatedButton(
+                      onPressed: () {}, child: Text('Buy on Amazon')),
+                ],
+              ),
+              const SizedBox(height: 10),
               Padding(
                 padding: const EdgeInsets.all(20.0),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
+                    const Text(
                       'About this book',
                       style: TextStyle(fontSize: 24, color: Colors.black),
                     ),
-                    SizedBox(height: 10),
+                    const SizedBox(height: 10),
                     Text(desc)
                   ],
                 ),

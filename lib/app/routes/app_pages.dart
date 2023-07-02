@@ -20,7 +20,7 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.NOTE,
-      page: () => const NoteView(),
+      page: () => NoteView(),
       binding: NoteBinding(),
     ),
   ];
