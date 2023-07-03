@@ -1,4 +1,5 @@
 import 'package:book_times/app/controllers/auth_controller.dart';
+import 'package:book_times/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -7,9 +8,6 @@ import '../controllers/login_controller.dart';
 
 class LoginView extends GetView<LoginController> {
   bool _obscureText = true;
-
-  final emailC = TextEditingController();
-  final passC = TextEditingController();
 
   final authC = Get.find<AuthController>();
 
@@ -54,7 +52,7 @@ class LoginView extends GetView<LoginController> {
                 padding: const EdgeInsets.all(20),
                 // widget textfield untuk memasukkan input email
                 child: TextField(
-                  controller: emailC,
+                  controller: controller.emailC,
                   keyboardType: TextInputType.emailAddress,
                   textInputAction: TextInputAction.next,
                   decoration: const InputDecoration(
@@ -71,7 +69,7 @@ class LoginView extends GetView<LoginController> {
                 // widget textfield untuk memasukkan input password
                 child: TextField(
                   // controller input form email dan password
-                  controller: passC,
+                  controller: controller.passC,
                   // obscureText: _obscureText,
                   decoration: InputDecoration(
                     contentPadding:
@@ -110,7 +108,8 @@ class LoginView extends GetView<LoginController> {
             padding: const EdgeInsets.all(20),
             child: ElevatedButton(
               // ketika user valid akan dinavigasikan ke halaman berikutnya
-              onPressed: () => authC.login(emailC.text, passC.text)
+              onPressed: () =>
+                  authC.login(controller.emailC.text, controller.passC.text)
               // if (_isLoginValid()) {
               //   _navigateToMainMenu();
               // } else {
@@ -148,14 +147,17 @@ class LoginView extends GetView<LoginController> {
               const Text(
                 "New User? ",
               ),
-              Text(
-                "Register",
-                style: TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.blue[800],
+              TextButton(
+                onPressed: () => Get.toNamed(Routes.SIGNUP),
+                child: Text(
+                  "Register",
+                  style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.blue[800],
+                  ),
                 ),
-              ),
+              )
             ],
           )
         ],

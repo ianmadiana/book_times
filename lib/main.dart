@@ -30,8 +30,8 @@ class MyApp extends StatelessWidget {
             print(snapshot.data);
             return GetMaterialApp(
               title: "Application",
-              // initialRoute: snapshot.data != null ? Routes.HOME : Routes.LOGIN,
-              home: snapshot.data != null ? HomeView() : LoginView(),
+              initialRoute: snapshot.data != null ? Routes.HOME : Routes.LOGIN,
+              // home: snapshot.data != null ? HomeView() : LoginView(),
               debugShowCheckedModeBanner: false,
               getPages: AppPages.routes,
               theme: ThemeData(

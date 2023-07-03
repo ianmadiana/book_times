@@ -10,9 +10,11 @@ import '../controllers/home_controller.dart';
 class HomeView extends GetView<HomeController> {
   HomeView({Key? key}) : super(key: key);
 
+  
+
   @override
   Widget build(BuildContext context) {
-    Get.put(HomeController());
+    // Get.put(HomeController());
     final authC = Get.find<AuthController>();
     return Scaffold(
       // extendBody: true,s
