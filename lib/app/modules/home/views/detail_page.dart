@@ -19,7 +19,7 @@ class Detail extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text(""),
+        // title: const Text(""),
         actions: [
           IconButton(
               onPressed: () {}, icon: const Icon(Icons.favorite_border_rounded))
@@ -120,13 +120,13 @@ class Detail extends StatelessWidget {
                   ],
                 ),
               ),
-              SizedBox(height: 50),
+              const SizedBox(height: 50),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  ElevatedButton(onPressed: () {}, child: Text('Sample')),
+                  ElevatedButton(onPressed: () {}, child: const Text('Sample')),
                   ElevatedButton(
-                      onPressed: () {}, child: Text('Buy on Amazon')),
+                      onPressed: () {}, child: const Text('Buy on Amazon')),
                 ],
               ),
               const SizedBox(height: 10),

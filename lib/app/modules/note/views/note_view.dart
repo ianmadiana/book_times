@@ -59,16 +59,19 @@ class NoteView extends GetView<NoteController> {
                           // const Text('edit')
                         ],
                       ),
-                      Column(
-                        children: [
-                          IconButton(
-                              highlightColor: Colors.red,
-                              onPressed: () {
-                                _deleteNote(documentSnapshot.id);
-                              },
-                              icon: const Icon(Icons.delete)),
-                          // const Text('delete')
-                        ],
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 2),
+                        child: Column(
+                          children: [
+                            IconButton(
+                                highlightColor: Colors.red,
+                                onPressed: () {
+                                  _deleteNote(documentSnapshot.id);
+                                },
+                                icon: const Icon(Icons.delete)),
+                            // const Text('delete')
+                          ],
+                        ),
                       )
                     ],
                   ),
