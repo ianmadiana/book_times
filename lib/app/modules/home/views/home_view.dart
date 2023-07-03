@@ -1,3 +1,4 @@
+import 'package:book_times/app/controllers/auth_controller.dart';
 import 'package:book_times/app/modules/home/views/detail_page.dart';
 import 'package:flutter/material.dart';
 
@@ -8,8 +9,11 @@ import '../controllers/home_controller.dart';
 
 class HomeView extends GetView<HomeController> {
   HomeView({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
+    Get.put(HomeController());
+    final authC = Get.find<AuthController>();
     return Scaffold(
       // extendBody: true,s
       appBar: AppBar(
@@ -20,7 +24,7 @@ class HomeView extends GetView<HomeController> {
         centerTitle: true,
         actions: [
           IconButton(
-            onPressed: () {},
+            onPressed: () => authC.logout(),
             icon: Image.asset(
               'assets/icons/logout.png',
               height: 20,

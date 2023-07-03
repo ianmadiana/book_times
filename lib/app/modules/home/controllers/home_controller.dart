@@ -12,6 +12,8 @@ class HomeController extends GetxController {
   final List<Book> listBook = [];
   var apiKey = 'ZNaUkPnTc6FqAUswO3aRmcqPrTJAgseG';
 
+  
+
   Future fetchData() async {
     var response = await http.get(Uri.parse(
         'https://api.nytimes.com/svc/books/v3/lists/current/hardcover-fiction.json?api-key=$apiKey'));
