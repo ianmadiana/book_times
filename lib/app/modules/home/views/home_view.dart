@@ -14,10 +14,8 @@ class HomeView extends GetView<HomeController> {
 
   @override
   Widget build(BuildContext context) {
-    // Get.put(HomeController());
     final authC = Get.find<AuthController>();
     return Scaffold(
-      // extendBody: true,s
       appBar: AppBar(
         title: const Text(
           'Book Times',
@@ -74,7 +72,6 @@ class HomeView extends GetView<HomeController> {
             }
           }),
       bottomNavigationBar: BottomNavigationBar(
-        // backgroundColor: ListItemBackground.mainColor,
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
@@ -95,17 +92,3 @@ class HomeView extends GetView<HomeController> {
     );
   }
 }
-
-// _bottomNavBarItem({
-//   required String assetPath,
-//   required String label,
-// }) {
-//   return BottomNavigationBarItem(
-//       icon: Image.asset(
-//         assetPath,
-//         width: 24,
-//         height: 24,
-//         // color: Colors.lightBlue,
-//       ),
-//       label: label);
-// }

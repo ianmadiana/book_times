@@ -19,7 +19,6 @@ class Detail extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        // title: const Text(""),
         actions: [
           IconButton(
               onPressed: () {}, icon: const Icon(Icons.favorite_border_rounded))
@@ -33,22 +32,18 @@ class Detail extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  Container(
+                  SizedBox(
                     height: 200,
                     width: 150,
                     child: Image.network(imageDetail),
                   ),
                   Column(
-                    // mainAxisAlignment: MainAxisAlignment.end,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       ConstrainedBox(
                         constraints: const BoxConstraints(maxWidth: 200),
                         child: Text(
                           title,
-                          // overflow: TextOverflow.ellipsis,
-                          // maxLines: 2,
-                          // softWrap: true,
                           style: const TextStyle(
                               fontSize: 20, fontWeight: FontWeight.bold),
                         ),

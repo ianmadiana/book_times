@@ -5,13 +5,9 @@ import 'package:get/get.dart';
 class AuthController extends GetxController {
   FirebaseAuth auth = FirebaseAuth.instance;
 
-  // Stream<User?> streamAuthStatus() {
-  //   return auth.authStateChanges();
-  // }
-
   Stream<User?> get streamAuthStatus => auth.authStateChanges();
 
-// SignUp
+// SINGUP
   void signup(String email, String password) async {
     try {
       UserCredential userCredential = await auth.createUserWithEmailAndPassword(
@@ -46,7 +42,7 @@ class AuthController extends GetxController {
     }
   }
 
-// Login
+// LOGIN
   void login(String email, String password) async {
     try {
       UserCredential userCredential = await auth.signInWithEmailAndPassword(
@@ -84,6 +80,7 @@ class AuthController extends GetxController {
     }
   }
 
+// LOGOUT
   void logout() async {
     await FirebaseAuth.instance.signOut();
     Get.offAllNamed(Routes.LOGIN);

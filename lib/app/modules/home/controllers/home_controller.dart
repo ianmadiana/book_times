@@ -29,8 +29,8 @@ class HomeController extends GetxController {
 int selectedIndex = 0;
 
   static List widgetOptions = [
-    Text('Home'),
-    Text('Note'),
+    const Text('Home'),
+    const Text('Note'),
   ];
 
   void onItemTapped(int index) {

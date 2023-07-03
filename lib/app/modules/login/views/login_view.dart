@@ -110,24 +110,6 @@ class LoginView extends GetView<LoginController> {
               // ketika user valid akan dinavigasikan ke halaman berikutnya
               onPressed: () =>
                   authC.login(controller.emailC.text, controller.passC.text)
-              // if (_isLoginValid()) {
-              //   _navigateToMainMenu();
-              // } else {
-              //   // widget pop up ketika user salah memasukkan username atau password
-              //   showDialog(
-              //     context: context,
-              //     builder: (context) => AlertDialog(
-              //       title: const Text('Login Failed'),
-              //       content: const Text('Invalid username or password'),
-              //       actions: <Widget>[
-              //         TextButton(
-              //           child: const Text('OK'),
-              //           onPressed: () => Navigator.of(context).pop(),
-              //         ),
-              //       ],
-              //     ),
-              //   );
-              // }
               ,
               style: ElevatedButton.styleFrom(
                 padding: const EdgeInsetsDirectional.symmetric(

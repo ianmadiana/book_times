@@ -1,6 +1,4 @@
 import 'package:book_times/app/controllers/auth_controller.dart';
-import 'package:book_times/app/modules/home/views/home_view.dart';
-import 'package:book_times/app/modules/login/views/login_view.dart';
 import 'package:book_times/app/utils/loading.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -43,7 +41,7 @@ class MyApp extends StatelessWidget {
               ),
             );
           }
-          return LoadingView();
+          return const LoadingView();
         });
   }
 }
