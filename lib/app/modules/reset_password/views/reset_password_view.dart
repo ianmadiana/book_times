@@ -1,29 +1,20 @@
 import 'package:book_times/app/controllers/auth_controller.dart';
-import 'package:book_times/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 
-import '../controllers/login_controller.dart';
+import '../../../routes/app_pages.dart';
+import '../controllers/reset_password_controller.dart';
 
-class LoginView extends GetView<LoginController> {
-  // bool _obscureText = true;
-
+class ResetPasswordView extends GetView<ResetPasswordController> {
+  ResetPasswordView({Key? key}) : super(key: key);
   final authC = Get.find<AuthController>();
-
-  LoginView({super.key});
-
-  // void _toggleObscureText() {
-  //   setState(() {
-  //     _obscureText = !_obscureText;
-  //   });
-  // }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-          'Login',
+          'Reset Password',
           style: TextStyle(fontFamily: 'chomsky'),
         ),
         centerTitle: true,
@@ -35,22 +26,22 @@ class LoginView extends GetView<LoginController> {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 30),
-                child: Center(
-                  // widget gambar
+              Center(
+                // widget gambar
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 30),
                   child: SizedBox(
                     height: 100,
-                    child: Image.asset('assets/icons/tree.png'),
+                    child: Image.asset('assets/icons/seeds.png'),
                   ),
                 ),
               ),
               // widget container untuk membungkus widget text "Login"
-              Container(
-                padding: const EdgeInsets.all(20),
-                child: const Center(
-                  child: Text(
-                    "Login",
+              Center(
+                child: Container(
+                  padding: const EdgeInsets.all(20),
+                  child: const Text(
+                    "Input your email",
                     style: TextStyle(fontFamily: 'ConcertOne', fontSize: 30),
                   ),
                 ),
@@ -71,57 +62,57 @@ class LoginView extends GetView<LoginController> {
                   ),
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.all(20),
-                // widget textfield untuk memasukkan input password
-                child: TextField(
-                  // controller input form email dan password
-                  controller: controller.passC,
-                  // obscureText: _obscureText,
-                  decoration: const InputDecoration(
-                    contentPadding:
-                        EdgeInsetsDirectional.symmetric(horizontal: 10),
-                    prefixIcon: Icon(Icons.lock),
-                    labelText: 'Password',
-                    // suffixIcon: IconButton(
-                    // icon: Icon(_obscureText
-                    //     ? Icons.visibility
-                    //     : Icons.visibility_off),
-                    // onPressed: () => null,
-                    // onPressed: _toggleObscureText,
-                    // ),
-                  ),
-                ),
-              ),
+              // Padding(
+              //   padding: const EdgeInsets.all(20),
+              //   // widget textfield untuk memasukkan input password
+              //   child: TextField(
+              //     // controller input form email dan password
+              //     // controller: controller.passC,
+              //     // obscureText: _obscureText,
+              //     decoration: const InputDecoration(
+              //       contentPadding:
+              //           EdgeInsetsDirectional.symmetric(horizontal: 10),
+              //       prefixIcon: Icon(Icons.lock),
+              //       labelText: 'Password',
+              //       // suffixIcon: IconButton(
+              //       // icon: Icon(_obscureText
+              //       //     ? Icons.visibility
+              //       //     : Icons.visibility_off),
+              //       // onPressed: () => null,
+              //       // onPressed: _toggleObscureText,
+              //       // ),
+              //     ),
+              //   ),
+              // ),
               // widget text untuk 'forgot password'
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 30),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    TextButton(
-                      onPressed: () {
-                        Get.toNamed(Routes.RESET_PASSWORD);
-                      },
-                      child: Text(
-                        'Forgot Password?',
-                        style: TextStyle(
-                          color: Colors.blue[900],
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    )
-                  ],
-                ),
-              ),
+              // Padding(
+              //   padding: const EdgeInsets.symmetric(horizontal: 30),
+              //   child: Row(
+              //     mainAxisAlignment: MainAxisAlignment.end,
+              //     children: [
+              //       TextButton(
+              //         onPressed: () {
+              //           // Get.toNamed(Routes.RESET_PASSWORD);
+              //         },
+              //         child: Text(
+              //           'Forgot Password?',
+              //           style: TextStyle(
+              //             color: Colors.blue[900],
+              //             fontWeight: FontWeight.bold,
+              //           ),
+              //         ),
+              //       )
+              //     ],
+              //   ),
+              // ),
             ],
           ),
           Padding(
             padding: const EdgeInsets.all(20),
             child: ElevatedButton(
               // ketika user valid akan dinavigasikan ke halaman berikutnya
-              onPressed: () =>
-                  authC.login(controller.emailC.text, controller.passC.text),
+              // onPressed: () {},
+              onPressed: () => authC.resetPassword(controller.emailC.text),
               style: ElevatedButton.styleFrom(
                 padding: const EdgeInsetsDirectional.symmetric(
                   vertical: 20,
@@ -129,7 +120,7 @@ class LoginView extends GetView<LoginController> {
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10)),
               ),
-              child: const Text("Login",
+              child: const Text("Reset",
                   style: TextStyle(fontFamily: 'ConcertOne', fontSize: 15)),
             ),
           ),

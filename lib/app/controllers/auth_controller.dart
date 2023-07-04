@@ -7,6 +7,27 @@ class AuthController extends GetxController {
 
   Stream<User?> get streamAuthStatus => auth.authStateChanges();
 
+  // RESET PWD
+  void resetPassword(String email) async {
+    if (email != "" && GetUtils.isEmail(email)) {
+      try {
+        await auth.sendPasswordResetEmail(email: email);
+        Get.defaultDialog(
+            title: 'Hooray ✨',
+            middleText: 'Email verification has ben sent to $email',
+            onConfirm: () {
+              Get.back(); //close dialog
+              Get.back(); //go to login
+            },
+            textConfirm: 'Ok');
+      } catch (e) {
+        Get.defaultDialog(title: 'Oops ⛔', middleText: 'Cannot reset password');
+      }
+    } else {
+      Get.defaultDialog(title: 'Oops ⛔', middleText: 'Email is not valid');
+    }
+  }
+
 // SINGUP
   void signup(String email, String password) async {
     try {

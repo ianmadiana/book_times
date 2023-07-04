@@ -1,4 +1,5 @@
 import 'package:book_times/app/controllers/auth_controller.dart';
+import 'package:book_times/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -29,19 +30,24 @@ class SignupView extends GetView<SignupController> {
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Center(
-                  // widget gambar
-                  child: SizedBox(
-                    height: 150,
-                    child: Image.asset('assets/icons/sprout.png'),
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 30),
+                  child: Center(
+                    // widget gambar
+                    child: SizedBox(
+                      height: 100,
+                      child: Image.asset('assets/icons/sprout.png'),
+                    ),
                   ),
                 ),
                 // widget container untuk membungkus widget text "Login"
                 Container(
                   padding: const EdgeInsets.all(20),
-                  child: const Text(
-                    "Login",
-                    style: TextStyle(fontFamily: 'ConcertOne', fontSize: 30),
+                  child: const Center(
+                    child: Text(
+                      "Register New Account",
+                      style: TextStyle(fontFamily: 'ConcertOne', fontSize: 30),
+                    ),
                   ),
                 ),
                 Padding(
@@ -131,7 +137,7 @@ class SignupView extends GetView<SignupController> {
                   "Already have account? ",
                 ),
                 TextButton(
-                  onPressed: () => Get.back(),
+                  onPressed: () => Get.toNamed(Routes.LOGIN),
                   child: Text(
                     "Login",
                     style: TextStyle(
