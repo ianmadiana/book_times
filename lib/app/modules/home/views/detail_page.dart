@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class Detail extends StatelessWidget {
-  Detail(
+  const Detail(
       {super.key,
       required this.imageDetail,
       required this.title,
@@ -9,11 +9,11 @@ class Detail extends StatelessWidget {
       required this.rank,
       required this.desc});
 
-  String imageDetail;
-  String title;
-  String desc;
-  String publisher;
-  String rank;
+  final String imageDetail;
+  final String title;
+  final String desc;
+  final String publisher;
+  final String rank;
 
   @override
   Widget build(BuildContext context) {

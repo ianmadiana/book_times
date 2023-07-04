@@ -7,9 +7,11 @@ import 'package:get/get.dart';
 import '../controllers/login_controller.dart';
 
 class LoginView extends GetView<LoginController> {
-  bool _obscureText = true;
+  // bool _obscureText = true;
 
   final authC = Get.find<AuthController>();
+
+  LoginView({super.key});
 
   // void _toggleObscureText() {
   //   setState(() {
@@ -71,18 +73,18 @@ class LoginView extends GetView<LoginController> {
                   // controller input form email dan password
                   controller: controller.passC,
                   // obscureText: _obscureText,
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                     contentPadding:
-                        const EdgeInsetsDirectional.symmetric(horizontal: 10),
-                    prefixIcon: const Icon(Icons.lock),
+                        EdgeInsetsDirectional.symmetric(horizontal: 10),
+                    prefixIcon: Icon(Icons.lock),
                     labelText: 'Password',
-                    suffixIcon: IconButton(
-                      icon: Icon(
-                        _obscureText ? Icons.visibility : Icons.visibility_off,
-                      ),
-                      onPressed: () => null,
+                    // suffixIcon: IconButton(
+                      // icon: Icon(_obscureText
+                      //     ? Icons.visibility
+                      //     : Icons.visibility_off),
+                      // onPressed: () => null,
                       // onPressed: _toggleObscureText,
-                    ),
+                    // ),
                   ),
                 ),
               ),
@@ -109,8 +111,7 @@ class LoginView extends GetView<LoginController> {
             child: ElevatedButton(
               // ketika user valid akan dinavigasikan ke halaman berikutnya
               onPressed: () =>
-                  authC.login(controller.emailC.text, controller.passC.text)
-              ,
+                  authC.login(controller.emailC.text, controller.passC.text),
               style: ElevatedButton.styleFrom(
                 padding: const EdgeInsetsDirectional.symmetric(
                   vertical: 20,

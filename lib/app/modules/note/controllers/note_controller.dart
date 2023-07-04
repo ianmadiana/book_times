@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class NoteController extends GetxController {
-  //TODO: Implement NoteController
 
   late TextEditingController bookC;
   late TextEditingController pageC;
@@ -42,9 +41,9 @@ class NoteController extends GetxController {
   }
 
   void updateNote (String bookName, String bookPage) async {
-    CollectionReference notes = firestore.collection("notes");
+    // CollectionReference notes = firestore.collection("notes");
 
-    String dateNow = DateTime.now().toIso8601String();
+    // String dateNow = DateTime.now().toIso8601String();
   }
 
   @override

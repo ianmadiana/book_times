@@ -160,9 +160,9 @@ class NoteView extends GetView<NoteController> {
   }
 
   Future<void> _createOrUpdate([DocumentSnapshot? documentSnapshot]) async {
-    String action = 'create';
+    // String action = 'create';
     if (documentSnapshot != null) {
-      action = 'update';
+      // action = 'update';
       controller.bookC.text = documentSnapshot['name'];
       controller.pageC.text = documentSnapshot['page'].toString();
     }

@@ -11,5 +11,5 @@ class SignupController extends GetxController {
     emailC.dispose();
 
     super.onClose();
-  }
+  } 
 }

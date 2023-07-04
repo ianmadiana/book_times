@@ -8,7 +8,7 @@ import '../controllers/signup_controller.dart';
 class SignupView extends GetView<SignupController> {
   SignupView({Key? key}) : super(key: key);
 
-  bool _obscureText = true;
+  // bool _obscureText = true;
 
   final authC = Get.find<AuthController>();
   @override
@@ -67,20 +67,20 @@ class SignupView extends GetView<SignupController> {
                     // controller input form email dan password
                     controller: controller.passC,
                     // obscureText: _obscureText,
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       contentPadding:
-                          const EdgeInsetsDirectional.symmetric(horizontal: 10),
-                      prefixIcon: const Icon(Icons.lock),
+                          EdgeInsetsDirectional.symmetric(horizontal: 10),
+                      prefixIcon: Icon(Icons.lock),
                       labelText: 'Password',
-                      suffixIcon: IconButton(
-                        icon: Icon(
-                          _obscureText
-                              ? Icons.visibility
-                              : Icons.visibility_off,
-                        ),
-                        onPressed: () => null,
-                        // onPressed: _toggleObscureText,
-                      ),
+                      // suffixIcon: IconButton(
+                      //   icon: Icon(
+                      //     _obscureText
+                      //         ? Icons.visibility
+                      //         : Icons.visibility_off,
+                      //   ),
+                      //   onPressed: () => null,
+                      //   // onPressed: _toggleObscureText,
+                      // ),
                     ),
                   ),
                 ),
