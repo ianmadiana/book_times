@@ -36,7 +36,7 @@ class ResetPasswordView extends GetView<ResetPasswordController> {
                   ),
                 ),
               ),
-              // widget container untuk membungkus widget text "Login"
+              // widget container untuk membungkus "Login"
               Center(
                 child: Container(
                   padding: const EdgeInsets.all(20),
@@ -110,8 +110,7 @@ class ResetPasswordView extends GetView<ResetPasswordController> {
           Padding(
             padding: const EdgeInsets.all(20),
             child: ElevatedButton(
-              // ketika user valid akan dinavigasikan ke halaman berikutnya
-              // onPressed: () {},
+              // fungsi reset password dengan paramaeter email
               onPressed: () => authC.resetPassword(controller.emailC.text),
               style: ElevatedButton.styleFrom(
                 padding: const EdgeInsetsDirectional.symmetric(

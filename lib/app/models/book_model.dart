@@ -4,6 +4,8 @@
 
 import 'dart:convert';
 
+// class untuk model data dari API
+
 BookModel bookModelFromJson(String str) => BookModel.fromJson(json.decode(str));
 
 String bookModelToJson(BookModel data) => json.encode(data.toJson());

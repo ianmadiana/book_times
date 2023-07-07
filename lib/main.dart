@@ -10,7 +10,9 @@ import 'app/routes/app_pages.dart';
 import 'firebase_options.dart';
 
 void main() async {
+  // fitur binding pada flutter
   WidgetsFlutterBinding.ensureInitialized();
+  // inisialisasi firebase saat pertama kali aplikasi dijalankan
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
@@ -18,10 +20,13 @@ void main() async {
 }
 
 class MyApp extends StatelessWidget {
+  // variabel untuk autentikasi
   final authC = Get.put(AuthController(), permanent: true);
   MyApp({super.key});
   @override
   Widget build(BuildContext context) {
+    // stream builder untuk memeriksa apakah aplikasi dalam keadaan
+    // sudah login atau belum dengan memeriksa state dari user
     return StreamBuilder<User?>(
         stream: authC.streamAuthStatus,
         builder: (context, snapshot) {
@@ -29,6 +34,7 @@ class MyApp extends StatelessWidget {
             print(snapshot.data);
             return GetMaterialApp(
               title: "Application",
+              // routing jika user sudah login atau belum
               initialRoute:
                   snapshot.data != null && snapshot.data!.emailVerified == true
                       ? Routes.HOME

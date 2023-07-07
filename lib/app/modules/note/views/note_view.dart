@@ -1,5 +1,4 @@
 import 'package:book_times/app/modules/note/controllers/note_controller.dart';
-import 'package:book_times/app/routes/app_pages.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
@@ -19,16 +18,19 @@ class NoteView extends GetView<NoteController> {
         title: const Text('Notes', style: TextStyle(fontFamily: 'chomsky')),
         centerTitle: true,
       ),
+      // memuat data notes menggunakan stream builder
       body: StreamBuilder(
         stream: notes.snapshots(),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
+            // menampilkan data notes menggunakan list view builder
             return ListView.builder(
               itemCount: snapshot.data?.docs.length,
               itemBuilder: (context, index) {
                 final DocumentSnapshot documentSnapshot =
                     snapshot.data!.docs[index];
 
+                // fungsi untuk update note
                 void updateNote(
                     String noteID, String bookName, String bookPage) async {
                   DocumentReference noteRef = notes.doc(noteID);
@@ -70,10 +72,12 @@ class NoteView extends GetView<NoteController> {
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
+                                // wodget untuk menampilkan nama note
                                 Text(documentSnapshot['name']),
                                 const Divider(
                                   color: Colors.grey,
                                 ),
+                                // widget untuk menampilkan page note
                                 Text(documentSnapshot['page'])
                               ],
                             ),
@@ -81,7 +85,7 @@ class NoteView extends GetView<NoteController> {
                         ),
                       ),
 
-                      // EDIT
+                      // fitur EDIT note
                       Column(
                         children: [
                           IconButton(
@@ -127,6 +131,7 @@ class NoteView extends GetView<NoteController> {
                                         ),
                                         const SizedBox(height: 10),
                                         ElevatedButton(
+                                          // fungsi untuk mengirim data note yang diedit
                                           onPressed: () => updateNote(
                                               controller.bookC.text,
                                               controller.pageC.text,
@@ -151,6 +156,7 @@ class NoteView extends GetView<NoteController> {
                           // const Text('edit')
                         ],
                       ),
+                      // Fitur hapus note
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 2),
                         child: Column(
@@ -175,6 +181,7 @@ class NoteView extends GetView<NoteController> {
           }
         },
       ),
+      // Bottom navigation bar
       bottomNavigationBar: BottomNavigationBar(
         // backgroundColor: ListItemBackground.mainColor,
         items: const <BottomNavigationBarItem>[
@@ -194,8 +201,10 @@ class NoteView extends GetView<NoteController> {
         unselectedItemColor: Colors
             .grey, // Mengatur warna ikon dan teks tidak terpilih (unselected)
       ),
+      // FAB untuk menambahkan note
       floatingActionButton: FloatingActionButton(
         onPressed: () {
+          // widget untuk menampilkan field edit note
           Get.bottomSheet(BottomSheet(
             onClosing: () {},
             builder: (context) => ListView(
@@ -203,10 +212,12 @@ class NoteView extends GetView<NoteController> {
                 Center(
                     child: Padding(
                   padding: const EdgeInsets.all(20.0),
+                  
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
+                      // edit nama buku
                       const Text("Nama Buku"),
                       const SizedBox(height: 10),
                       TextField(
@@ -219,6 +230,7 @@ class NoteView extends GetView<NoteController> {
                       const SizedBox(height: 10),
                       const Text("Halaman"),
                       const SizedBox(height: 10),
+                      // widget untuk edit page book
                       TextField(
                         controller: controller.pageC,
                         decoration: const InputDecoration(
@@ -227,6 +239,7 @@ class NoteView extends GetView<NoteController> {
                                 borderSide: BorderSide(color: Colors.black))),
                       ),
                       const SizedBox(height: 10),
+                      // button untuk mengirim hasil edit dengan fungsi addNotes
                       ElevatedButton(
                           onPressed: () => controller.addNotes(
                               controller.bookC.text, controller.pageC.text),
@@ -243,7 +256,7 @@ class NoteView extends GetView<NoteController> {
     );
   }
 
-  // Delete
+  // fungsi Delete note
   Future<void> _deleteNote(String noteId) async {
     await notes.doc(noteId).delete();
 

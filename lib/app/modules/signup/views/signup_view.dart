@@ -23,6 +23,7 @@ class SignupView extends GetView<SignupController> {
         centerTitle: true,
       ),
       body: Center(
+        
         child: ListView(
           children: [
             // widget kolom untuk membungkus gambar dan input text email dan password
@@ -30,6 +31,7 @@ class SignupView extends GetView<SignupController> {
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                // widget untuk menampilkan image dari asset
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 30),
                   child: Center(
@@ -40,7 +42,7 @@ class SignupView extends GetView<SignupController> {
                     ),
                   ),
                 ),
-                // widget container untuk membungkus widget text "Login"
+                // widget untuk menampilkan teks login
                 Container(
                   padding: const EdgeInsets.all(20),
                   child: const Center(
@@ -52,7 +54,7 @@ class SignupView extends GetView<SignupController> {
                 ),
                 Padding(
                   padding: const EdgeInsets.all(20),
-                  // widget textfield untuk memasukkan input email
+                  // widget untuk memasukkan input email
                   child: TextField(
                     controller: controller.emailC,
                     keyboardType: TextInputType.emailAddress,
@@ -68,7 +70,7 @@ class SignupView extends GetView<SignupController> {
                 ),
                 Padding(
                   padding: const EdgeInsets.all(20),
-                  // widget textfield untuk memasukkan input password
+                  // widget untuk memasukkan input password
                   child: TextField(
                     // controller input form email dan password
                     controller: controller.passC,
@@ -95,6 +97,7 @@ class SignupView extends GetView<SignupController> {
             ),
             Padding(
               padding: const EdgeInsets.all(20),
+              // widget untuk mengirim data email dan password dari user
               child: ElevatedButton(
                 // ketika user valid akan dinavigasikan ke halaman berikutnya
                 onPressed: () =>

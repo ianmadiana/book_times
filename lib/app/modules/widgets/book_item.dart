@@ -13,7 +13,9 @@ class BookItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
+        // widget untuk menampilkan poster dari buku
         Card(elevation: 10, child: Image.network(data.bookImage)),
+        // widget untuk menampilkan judul buku
         Padding(
           padding: const EdgeInsets.all(7.0),
           child: Text(
@@ -23,6 +25,7 @@ class BookItem extends StatelessWidget {
             style: const TextStyle(fontWeight: FontWeight.bold),
           ),
         ),
+        // widget untuk menampilkan deskripsi dari buku
         Padding(
           padding: const EdgeInsetsDirectional.all(3),
           child: Text(
@@ -39,6 +42,7 @@ class BookItem extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                // widget untuk menampilkan icon rank
                 Container(
                   height: 20,
                   decoration: BoxDecoration(
@@ -53,6 +57,7 @@ class BookItem extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(width: 10),
+                // widget untuk menampilkan icon author
                 Container(
                   height: 20,
                   decoration: BoxDecoration(

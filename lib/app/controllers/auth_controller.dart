@@ -2,12 +2,13 @@ import 'package:book_times/app/routes/app_pages.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 
+// class controller untuk mengatur fungsi autentikasi
 class AuthController extends GetxController {
   FirebaseAuth auth = FirebaseAuth.instance;
 
   Stream<User?> get streamAuthStatus => auth.authStateChanges();
 
-  // RESET PWD
+  // Rfungsi untuk RESET PASSWORD
   void resetPassword(String email) async {
     if (email != "" && GetUtils.isEmail(email)) {
       try {
@@ -28,7 +29,7 @@ class AuthController extends GetxController {
     }
   }
 
-// SINGUP
+// fungsi untuk SINGUP
   void signup(String email, String password) async {
     try {
       UserCredential userCredential = await auth.createUserWithEmailAndPassword(
@@ -63,7 +64,7 @@ class AuthController extends GetxController {
     }
   }
 
-// LOGIN
+// fungsi untuk LOGIN
   void login(String email, String password) async {
     try {
       UserCredential userCredential = await auth.signInWithEmailAndPassword(
@@ -101,7 +102,7 @@ class AuthController extends GetxController {
     }
   }
 
-// LOGOUT
+// fungsi untuk LOGOUT
   void logout() async {
     await FirebaseAuth.instance.signOut();
     Get.offAllNamed(Routes.LOGIN);

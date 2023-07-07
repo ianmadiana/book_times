@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+// class detail dari buku yang di-klik user
 class Detail extends StatelessWidget {
   const Detail(
       {super.key,
@@ -20,23 +21,27 @@ class Detail extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         actions: [
+          // widget untuk menampilkan icon favorit
           IconButton(
               onPressed: () {}, icon: const Icon(Icons.favorite_border_rounded))
         ],
       ),
       body: Padding(
           padding: const EdgeInsets.all(10.0),
+          // widget untuk menampilkan elemen secara listview
           child: ListView(
             children: [
               Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
+                  // widget untuk menampilkan poster buku
                   SizedBox(
                     height: 200,
                     width: 150,
                     child: Image.network(imageDetail),
                   ),
+                  // widget untuk menampilkan publisher
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -62,6 +67,7 @@ class Detail extends StatelessWidget {
                       children: [
                         Row(
                           children: [
+                            // widget untuk menampilkan posisi rank mingguan
                             Text(
                               rank,
                               style: const TextStyle(fontSize: 12),
@@ -125,6 +131,7 @@ class Detail extends StatelessWidget {
                 ],
               ),
               const SizedBox(height: 10),
+              // widget untuk menampilkan deskripsi dari buku
               Padding(
                 padding: const EdgeInsets.all(20.0),
                 child: Column(

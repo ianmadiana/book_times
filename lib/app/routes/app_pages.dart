@@ -1,7 +1,5 @@
 import 'package:get/get.dart';
 
-import '../modules/edit_page/bindings/edit_page_binding.dart';
-import '../modules/edit_page/views/edit_page_view.dart';
 import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
 import '../modules/login/bindings/login_binding.dart';
@@ -45,11 +43,6 @@ class AppPages {
       name: _Paths.RESET_PASSWORD,
       page: () => ResetPasswordView(),
       binding: ResetPasswordBinding(),
-    ),
-    GetPage(
-      name: _Paths.EDIT_PAGE,
-      page: () => EditPageView(),
-      binding: EditPageBinding(),
     ),
   ];
 }

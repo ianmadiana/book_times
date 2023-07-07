@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+// class untuk menampilkan loading screen
 class LoadingView extends StatelessWidget {
   const LoadingView({super.key});
 

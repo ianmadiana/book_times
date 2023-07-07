@@ -40,7 +40,7 @@ class LoginView extends GetView<LoginController> {
                   ),
                 ),
               ),
-              // widget container untuk membungkus widget text "Login"
+              // widget container untuk membungkus text "Login"
               Container(
                 padding: const EdgeInsets.all(20),
                 child: const Center(
@@ -95,6 +95,7 @@ class LoginView extends GetView<LoginController> {
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     TextButton(
+                      // routing ke halaman reset password
                       onPressed: () {
                         Get.toNamed(Routes.RESET_PASSWORD);
                       },
@@ -114,7 +115,7 @@ class LoginView extends GetView<LoginController> {
           Padding(
             padding: const EdgeInsets.all(20),
             child: ElevatedButton(
-              // ketika user valid akan dinavigasikan ke halaman berikutnya
+              // memanggil fungsi login dari controller dengan memasukkan paramater email dan password
               onPressed: () =>
                   authC.login(controller.emailC.text, controller.passC.text),
               style: ElevatedButton.styleFrom(
@@ -136,6 +137,7 @@ class LoginView extends GetView<LoginController> {
                 "New User? ",
               ),
               TextButton(
+                // routing ke halaman signup
                 onPressed: () => Get.toNamed(Routes.SIGNUP),
                 child: Text(
                   "Register",

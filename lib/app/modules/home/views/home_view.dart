@@ -23,6 +23,7 @@ class HomeView extends GetView<HomeController> {
         ),
         centerTitle: true,
         actions: [
+          // Tombol untuk logout dengan memanggil fungsi logout() dari controller
           IconButton(
             onPressed: () => authC.logout(),
             icon: Image.asset(
@@ -34,14 +35,18 @@ class HomeView extends GetView<HomeController> {
           )
         ],
       ),
+      // fetch data API menggunakan future builder
       body: FutureBuilder(
           future: controller.fetchData(),
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
               return const Center(
+                // menampilkan loading bar jika masih proses mengambil data
                 child: CircularProgressIndicator(),
               );
             } else {
+              // tampilkan data dari API jika data sudah dimuat semua
+              // menampilkan data menggunakan gridview dibagi menjadi 2 item
               return GridView.builder(
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 2,
@@ -52,11 +57,14 @@ class HomeView extends GetView<HomeController> {
                 itemCount: controller.listBook.length,
                 itemBuilder: (context, index) {
                   var data = controller.listBook[index];
+                  // item dibungkus dengan widget inkwell agar bisa di-klik
                   return InkWell(
                     onTap: () {
+                      // pada saat item diklik akan menuju ke detail page
                       Navigator.push(
                           context,
                           MaterialPageRoute(
+                            // detail page mengambil beberapa parameter menggunakan constructor
                               builder: (context) => Detail(
                                     imageDetail: data.bookImage,
                                     desc: data.description,
@@ -65,12 +73,14 @@ class HomeView extends GetView<HomeController> {
                                     rank: data.rank.toString(),
                                   )));
                     },
+                    // widget untuk menampilkan item dari API
                     child: BookItem(data: data),
                   );
                 },
               );
             }
           }),
+          // bottom navigasi
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
