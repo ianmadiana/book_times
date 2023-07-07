@@ -13,11 +13,6 @@ class LoginView extends GetView<LoginController> {
 
   LoginView({super.key});
 
-  // void _toggleObscureText() {
-  //   setState(() {
-  //     _obscureText = !_obscureText;
-  //   });
-  // }
   @override
   Widget build(BuildContext context) {
     return Scaffold(

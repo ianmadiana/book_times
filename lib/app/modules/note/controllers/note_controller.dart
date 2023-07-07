@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class NoteController extends GetxController {
-
   late TextEditingController bookC;
   late TextEditingController pageC;
 
@@ -40,11 +39,6 @@ class NoteController extends GetxController {
     }
   }
 
-  void updateNote (String bookName, String bookPage) async {
-    // CollectionReference notes = firestore.collection("notes");
-
-    // String dateNow = DateTime.now().toIso8601String();
-  }
 
   @override
   void onInit() {
@@ -62,7 +56,6 @@ class NoteController extends GetxController {
 
   int selectedIndex = 1;
 
-
   void onItemTapped(int index) {
     if (index == 0) {
       Get.back();
@@ -73,6 +66,4 @@ class NoteController extends GetxController {
     selectedIndex = index;
     update();
   }
-
-
 }

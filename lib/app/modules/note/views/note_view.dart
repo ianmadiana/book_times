@@ -1,4 +1,5 @@
 import 'package:book_times/app/modules/note/controllers/note_controller.dart';
+import 'package:book_times/app/routes/app_pages.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
@@ -7,8 +8,9 @@ import 'package:get/get.dart';
 class NoteView extends GetView<NoteController> {
   NoteView({Key? key}) : super(key: key);
 
-  final CollectionReference _notes =
+  final CollectionReference notes =
       FirebaseFirestore.instance.collection('notes');
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -18,7 +20,7 @@ class NoteView extends GetView<NoteController> {
         centerTitle: true,
       ),
       body: StreamBuilder(
-        stream: _notes.snapshots(),
+        stream: notes.snapshots(),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             return ListView.builder(
@@ -26,6 +28,36 @@ class NoteView extends GetView<NoteController> {
               itemBuilder: (context, index) {
                 final DocumentSnapshot documentSnapshot =
                     snapshot.data!.docs[index];
+
+                void updateNote(
+                    String noteID, String bookName, String bookPage) async {
+                  DocumentReference noteRef = notes.doc(noteID);
+
+                  try {
+                    String dateNow = DateTime.now().toIso8601String();
+                    await noteRef.update({
+                      "name": bookName,
+                      "page": bookPage,
+                      "time": dateNow,
+                    });
+
+                    Get.defaultDialog(
+                      title: "Berhasil",
+                      middleText: "Berhasil Mengubah catatan",
+                      onConfirm: () {
+                        Get.back(); // close dialog
+                        Get.back(); // kembali ke home
+                      },
+                      textConfirm: "Ok",
+                    );
+                  } catch (e) {
+                    print('ini = $e');
+                    Get.defaultDialog(
+                      title: "Terjadi kesalahan",
+                      middleText: "Tidak berhasil mengubah catatan",
+                    );
+                  }
+                }
 
                 return Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 10),
@@ -48,14 +80,74 @@ class NoteView extends GetView<NoteController> {
                           ),
                         ),
                       ),
+
+                      // EDIT
                       Column(
                         children: [
                           IconButton(
-                              highlightColor: Colors.lightBlue,
-                              onPressed: () {
-                                _createOrUpdate(documentSnapshot);
-                              },
-                              icon: const Icon(Icons.edit)),
+                            highlightColor: Colors.lightBlue,
+                            // onPressed: () => Get.offAllNamed(Routes.EDIT_PAGE),
+                            onPressed: () => Get.bottomSheet(BottomSheet(
+                              onClosing: () {},
+                              builder: (context) => ListView(
+                                children: [
+                                  Center(
+                                      child: Padding(
+                                    padding: const EdgeInsets.all(20.0),
+                                    child: Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Text('Nama Buku'),
+                                        const SizedBox(height: 10),
+                                        // BOOK NAME
+                                        TextField(
+                                          controller: controller.bookC,
+                                          decoration: const InputDecoration(
+                                              labelText: 'Nama Buku',
+                                              border: OutlineInputBorder(
+                                                  borderSide: BorderSide(
+                                                      color: Colors.black))),
+                                        ),
+                                        const SizedBox(height: 10),
+                                        Text('Halaman'),
+                                        const SizedBox(height: 10),
+                                        // BOOK PAGE
+                                        TextField(
+                                          controller: controller.pageC,
+                                          decoration: const InputDecoration(
+                                            hintText: 'Page Book',
+                                            border: OutlineInputBorder(
+                                              borderSide: BorderSide(
+                                                  color: Colors.black),
+                                            ),
+                                          ),
+                                        ),
+                                        const SizedBox(height: 10),
+                                        ElevatedButton(
+                                          onPressed: () => updateNote(
+                                              controller.bookC.text,
+                                              controller.pageC.text,
+                                              documentSnapshot.id
+
+                                              // Get.arguments,
+                                              ),
+                                          child: const Text("Save"),
+                                        )
+                                      ],
+                                    ),
+                                  ))
+                                ],
+                              ),
+                            )),
+                            // controller.updateNote(
+                            //     controller.bookC.text,
+                            //     controller.pageC.text,
+                            //     Get.arguments),
+                            icon: const Icon(Icons.edit),
+                          ),
                           // const Text('edit')
                         ],
                       ),
@@ -103,56 +195,57 @@ class NoteView extends GetView<NoteController> {
             .grey, // Mengatur warna ikon dan teks tidak terpilih (unselected)
       ),
       floatingActionButton: FloatingActionButton(
-          onPressed: () {
-            Get.bottomSheet(BottomSheet(
-              onClosing: () {},
-              builder: (context) => ListView(
-                children: [
-                  Center(
-                      child: Padding(
-                    padding: const EdgeInsets.all(20.0),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const Text("Nama Buku"),
-                        const SizedBox(height: 10),
-                        TextField(
-                          controller: controller.bookC,
-                          decoration: const InputDecoration(
-                              labelText: 'Nama Buku',
-                              border: OutlineInputBorder(
-                                  borderSide: BorderSide(color: Colors.black))),
-                        ),
-                        const SizedBox(height: 10),
-                        const Text("Halaman"),
-                        const SizedBox(height: 10),
-                        TextField(
-                          controller: controller.pageC,
-                          decoration: const InputDecoration(
-                              labelText: 'Halaman buku',
-                              border: OutlineInputBorder(
-                                  borderSide: BorderSide(color: Colors.black))),
-                        ),
-                        const SizedBox(height: 10),
-                        ElevatedButton(
-                            onPressed: () => controller.addNotes(
-                                controller.bookC.text, controller.pageC.text),
-                            child: const Text("Save"))
-                      ],
-                    ),
-                  ))
-                ],
-              ),
-            ));
-          },
-          child: const Icon(Icons.add)),
+        onPressed: () {
+          Get.bottomSheet(BottomSheet(
+            onClosing: () {},
+            builder: (context) => ListView(
+              children: [
+                Center(
+                    child: Padding(
+                  padding: const EdgeInsets.all(20.0),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Text("Nama Buku"),
+                      const SizedBox(height: 10),
+                      TextField(
+                        controller: controller.bookC,
+                        decoration: const InputDecoration(
+                            labelText: 'Nama Buku',
+                            border: OutlineInputBorder(
+                                borderSide: BorderSide(color: Colors.black))),
+                      ),
+                      const SizedBox(height: 10),
+                      const Text("Halaman"),
+                      const SizedBox(height: 10),
+                      TextField(
+                        controller: controller.pageC,
+                        decoration: const InputDecoration(
+                            labelText: 'Halaman buku',
+                            border: OutlineInputBorder(
+                                borderSide: BorderSide(color: Colors.black))),
+                      ),
+                      const SizedBox(height: 10),
+                      ElevatedButton(
+                          onPressed: () => controller.addNotes(
+                              controller.bookC.text, controller.pageC.text),
+                          child: const Text("Save"))
+                    ],
+                  ),
+                ))
+              ],
+            ),
+          ));
+        },
+        child: const Icon(Icons.add),
+      ),
     );
   }
 
   // Delete
   Future<void> _deleteNote(String noteId) async {
-    await _notes.doc(noteId).delete();
+    await notes.doc(noteId).delete();
 
     // Show a snackbar
     Get.snackbar('Deleted', 'Note deleted',

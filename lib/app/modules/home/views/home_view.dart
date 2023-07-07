@@ -85,9 +85,9 @@ class HomeView extends GetView<HomeController> {
         currentIndex: controller.selectedIndex,
         onTap: controller.onItemTapped,
         selectedItemColor:
-            Colors.grey, // Mengatur warna ikon dan teks terpilih (selected)
+            Colors.grey,
         unselectedItemColor: Colors
-            .black, // Mengatur warna ikon dan teks tidak terpilih (unselected)
+            .black, 
       ),
     );
   }
